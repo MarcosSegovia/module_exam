@@ -4,12 +4,12 @@ class module_exam {
 	# HOSTS
 
 	# Miscellaneous packages.
-	$misc_packages = [
-		'sendmail','vim-enhanced','telnet','zip','unzip','screen',
-		'libssh2','libssh2-devel','gcc','gcc-c++','autoconf','automake','postgresql-libs'
-	]
+	#$misc_packages = [
+	#	'sendmail','vim-enhanced','telnet','zip','unzip','screen',
+	#	'libssh2','libssh2-devel','gcc','gcc-c++','autoconf','automake','postgresql-libs'
+	#]
 
-	package { $misc_packages: ensure => latest }
+	#package { $misc_packages: ensure => latest }
 
 	# APACHE
 
@@ -73,15 +73,14 @@ class module_exam {
 	}
 
 
-	php::module { [ 'devel', 'pear', 'xml', 'mbstring', 'pecl-memcache', 'soap' ]: }
+	#php::module { [ 'devel', 'pear', 'xml', 'mbstring', 'pecl-memcache', 'soap' ]: }
 
 	#MONGODB
 
-	include '::mongodb::server'
+	class {'::mongodb::server':
+	}
 
 	# Files
-
-	$content = ""
 
 	file { '/var/www/myproject/index.php':
 	    ensure  => 'present',
